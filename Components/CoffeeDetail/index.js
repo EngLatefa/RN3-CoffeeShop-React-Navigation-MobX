@@ -12,7 +12,8 @@ import {
   List,
   ListItem,
   Picker,
-  Content
+  Content,
+  Icon
 } from "native-base";
 
 // Style
@@ -22,6 +23,14 @@ import styles from "./styles";
 import CoffeeStore from "../../store/coffeeStore";
 
 class CoffeeDetail extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam("coffeeShop").name,
+    headerRight: (
+      <Button onPress={() => navigation.navigate("Cart")}>
+        <Icon style="EvilIcons" name="cart" />
+      </Button>
+    )
+  });
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +54,7 @@ class CoffeeDetail extends Component {
   render() {
     const coffeeshops = CoffeeStore.coffeeshops;
     if (!coffeeshops) return <Content />;
-    const coffeeshop = coffeeshops[0];
+    const coffeeshop = this.props.navigation.getParam("coffeeShop", {});
     return (
       <Content>
         <List>

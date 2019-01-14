@@ -8,8 +8,8 @@ import { ListItem, Card, CardItem, Thumbnail, Text, Left } from "native-base";
 import styles from "./styles";
 
 class CoffeeItem extends Component {
-  handlePress() {
-    alert("Pressed");
+  handlePress(coffeeShop) {
+    this.props.navigation.navigate("Detail", { coffeeShop: coffeeShop });
   }
   render() {
     const { coffeeShop } = this.props;
